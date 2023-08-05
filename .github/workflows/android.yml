@@ -5,9 +5,10 @@ on:
 
 jobs:
   build:
-
     runs-on: ubuntu-latest
-
+    env:
+      USERNAME_GITHUB: ${{ secrets.GITHUB_USERNAME }}
+      TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v3
     - name: set up JDK 11
