@@ -79,7 +79,12 @@ android {
 }
 
 dependencies {
-    implementation 'dev.sora.relay:protohax:+'
+    implementation 'dev.sora.relay:protohax:+' {
+        exclude group: 'coelho.msftauth'
+        exclude group: 'com.google.guava'
+        exclude group: 'com.nukkitx.fastutil'
+        exclude group: 'io.netty'
+    }
     implementation 'dev.sora.networking:libmitm:1.2.3-raknet'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2'
