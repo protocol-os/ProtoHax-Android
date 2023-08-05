@@ -22,12 +22,8 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew app:assembleDebug
-    - name: List files
-      run: ls
-    - name: List files 2
-      run: ls -R ./app/build/outputs/apk/
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: app-release
-        path: ./app/build/outputs/apk/release/app-release.apk
+        path: ./app/build/outputs/apk/debug/app-debug.apk
