@@ -89,7 +89,7 @@ android {
 }
 
 dependencies {
-    implementation 'dev.sora.relay:ProtoHax:1.4.0'
+    implementation 'com.SkidderMC:ProtoHax:+'
     implementation 'dev.sora.networking:libmitm:1.2.3-raknet'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2'
