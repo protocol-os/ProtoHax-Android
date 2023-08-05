@@ -15,8 +15,8 @@ dependencyResolutionManagement {
         maven {
             url = 'https://maven.pkg.github.com/SkidderMC/ProtoHax'
             credentials {
-                username = project.findProperty("gpr.user") ?: System.getenv("USERNAME_GITHUB")
-                password = project.findProperty("gpr.token") ?: System.getenv("TOKEN_GITHUB")
+                username = System.getenv("USERNAME_GITHUB")
+                password = System.getenv("TOKEN_GITHUB")
             }
         }
     }
