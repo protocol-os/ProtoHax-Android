@@ -25,5 +25,5 @@ jobs:
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
-        name: app-release
+        name: ProtoHax-debug-${{ github.sha }}
         path: ./app/build/outputs/apk/debug/app-debug.apk
