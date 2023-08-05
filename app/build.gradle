@@ -79,7 +79,7 @@ android {
 }
 
 dependencies {
-    implementation 'dev.sora.relay:protohax:+' {
+    implementation('dev.sora.relay:protohax:+'){
         exclude group: 'coelho.msftauth'
         exclude group: 'com.google.guava'
         exclude group: 'com.nukkitx.fastutil'
