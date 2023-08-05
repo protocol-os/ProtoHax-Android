@@ -10,6 +10,8 @@ dependencyResolutionManagement {
     repositories {
         mavenLocal()
         maven { url = 'https://mccheatz.github.io/maven_repo/' }
+        maven { url = 'https://repo.opencollab.dev/maven-releases/' }
+        maven { url = 'https://repo.opencollab.dev/maven-snapshots/' }
         google()
         mavenCentral()
         maven {
