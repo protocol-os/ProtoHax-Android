@@ -79,24 +79,7 @@ android {
 }
 
 dependencies {
-    implementation('dev.sora.relay:protohax:+'){
-        exclude group: 'coelho.msftauth'
-        exclude group: 'com.google.guava'
-        exclude group: 'com.nukkitx.fastutil'
-        exclude group: 'com.google.code.gson'
-        exclude group: 'io.airlift'
-        exclude group: 'net.jodah'
-        exclude group: 'com.squareup.okhttp3'
-        exclude group: 'com.squareup.okio'
-        exclude group: 'org.cloudburstmc.math'
-        exclude group: 'org.cloudburstmc'
-        exclude group: 'org.cloudburstmc.netty'
-        exclude group: 'org.cloudburstmc.protocol'
-        exclude group: 'io.github._0x9fff00.leveldb'
-        exclude group: 'org.bitbucket.b_c'
-        exclude group: 'org.slf4j'
-        exclude group: 'io.netty'
-    }
+    implementation 'dev.sora.relay:protohax:+'
     implementation 'dev.sora.networking:libmitm:1.2.3-raknet'
 
     implementation 'org.jetbrains.kotlinx:kotlinx-coroutines-core:1.7.2'
