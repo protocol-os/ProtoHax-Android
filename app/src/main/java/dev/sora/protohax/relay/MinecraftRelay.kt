@@ -1,5 +1,7 @@
 package dev.sora.protohax.relay
 
+import club.fdpclient.club.script.ScriptManager
+import club.fdpclient.club.script.ScriptManagerFileSystem
 import dev.sora.protohax.MyApplication
 import dev.sora.protohax.relay.modules.ModuleESP
 import dev.sora.protohax.relay.netty.channel.NativeRakConfig
@@ -7,6 +9,7 @@ import dev.sora.protohax.relay.netty.channel.NativeRakServerChannel
 import dev.sora.protohax.ui.components.screen.settings.Settings
 import dev.sora.protohax.ui.overlay.ConfigSectionShortcut
 import dev.sora.protohax.ui.overlay.hud.HudManager
+import dev.sora.protohax.util.ContextUtils.toast
 import dev.sora.relay.MinecraftRelayListener
 import dev.sora.relay.cheat.command.CommandManager
 import dev.sora.relay.cheat.command.impl.CommandDownloadWorld
@@ -34,6 +37,8 @@ object MinecraftRelay {
     private var relay: Relay? = null
 
     val session = GameSession()
+	lateinit var scriptManager: ScriptManager
+	lateinit var scriptFileManager: ScriptManagerFileSystem
     val moduleManager: ModuleManager
     val configManager: ConfigManagerFileSystem
 	val hudManager: HudManager
@@ -63,7 +68,16 @@ object MinecraftRelay {
 					commandManager.registerCommand(CommandDownloadWorld(session.eventManager, it))
 				}
 			}
-
+			scriptManager = ScriptManager()
+			scriptFileManager = ScriptManagerFileSystem(
+				MyApplication.instance.getExternalFilesDir("scripts")!!,
+				".lua",
+				scriptManager
+			)
+			MyApplication.instance.toast("[Script] loading ${scriptFileManager.listScript().size} scripts")
+			for (s in scriptFileManager.listScript()) {
+				scriptFileManager.loadScript(s)
+			}
 			// clean-up
 			loaderThread = null
 		}
