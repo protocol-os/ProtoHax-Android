@@ -1,11 +1,15 @@
 package dev.sora.protohax.relay
 
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import club.fdpclient.club.script.ScriptManager
 import club.fdpclient.club.script.ScriptManagerFileSystem
 import dev.sora.protohax.MyApplication
 import dev.sora.protohax.relay.modules.ModuleESP
 import dev.sora.protohax.relay.netty.channel.NativeRakConfig
 import dev.sora.protohax.relay.netty.channel.NativeRakServerChannel
+import dev.sora.protohax.relay.service.AppService
 import dev.sora.protohax.ui.components.screen.settings.Settings
 import dev.sora.protohax.ui.overlay.ConfigSectionShortcut
 import dev.sora.protohax.ui.overlay.hud.HudManager
@@ -31,6 +35,7 @@ import org.cloudburstmc.netty.channel.raknet.RakReliability
 import java.io.File
 import java.net.InetSocketAddress
 import kotlin.concurrent.thread
+
 
 object MinecraftRelay {
 
@@ -74,7 +79,13 @@ object MinecraftRelay {
 				".lua",
 				scriptManager
 			)
-			MyApplication.instance.toast("[Script] loading ${scriptFileManager.listScript().size} scripts")
+			Handler(Looper.getMainLooper()).post(Runnable {
+				Toast.makeText(
+					MyApplication.instance,
+					"[Script] loading ${scriptFileManager.listScript().size} scripts",
+					Toast.LENGTH_LONG
+				).show()
+			})
 			for (s in scriptFileManager.listScript()) {
 				scriptFileManager.loadScript(s)
 			}

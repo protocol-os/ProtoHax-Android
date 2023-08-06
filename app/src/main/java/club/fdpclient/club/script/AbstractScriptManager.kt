@@ -1,9 +1,13 @@
 package club.fdpclient.club.script
 
+import android.os.Handler
+import android.os.Looper
+import android.widget.Toast
 import com.google.gson.Gson
 import com.google.gson.GsonBuilder
 import com.google.gson.JsonObject
 import dev.sora.protohax.MyApplication
+import dev.sora.protohax.relay.MinecraftRelay
 import dev.sora.protohax.util.ContextUtils.toast
 import dev.sora.relay.utils.logError
 import java.io.File
@@ -40,7 +44,14 @@ abstract class AbstractScriptManager(val scriptManager: ScriptManager) {
 
             true
         } catch (t: Throwable) {
-			MyApplication.instance.toast("[Script]failed to load $name")
+
+			Handler(Looper.getMainLooper()).post(Runnable {
+				Toast.makeText(
+					MyApplication.instance,
+					"[Script]failed to load $name",
+					Toast.LENGTH_LONG
+				).show()
+			})
             logError("failed to load Script", t)
             false
         }

@@ -44,7 +44,13 @@ class ScriptApi(val script: Script) {
 	}
 
 	fun tosat(str: String) {
-		MyApplication.instance.toast(str)
+		Handler(Looper.getMainLooper()).post(Runnable {
+			Toast.makeText(
+				MyApplication.instance,
+				str,
+				Toast.LENGTH_LONG
+			).show()
+		})
 	}
 
 	fun registerFloatValue(
