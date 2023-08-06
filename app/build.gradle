@@ -99,6 +99,7 @@ dependencies {
     implementation "com.google.accompanist:accompanist-systemuicontroller:$accompanist_version"
     implementation "com.google.accompanist:accompanist-drawablepainter:$accompanist_version"
 
+    implementation 'org.luaj:luaj-jse:3.0.1'
     implementation 'com.google.firebase:firebase-crashlytics:18.3.7'
     implementation 'com.google.firebase:firebase-analytics:21.3.0'
 }
