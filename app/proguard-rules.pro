@@ -22,6 +22,8 @@
 
 # keep netty related classes
 -keep class io.netty.** { *; }
+-keep class kotlinx.** { *; }
+-keep class org.luaj.** { *; }
 -keep class org.cloudburstmc.netty.** { *; }
 -keep @io.netty.channel.ChannelHandler$Sharable class *
 
