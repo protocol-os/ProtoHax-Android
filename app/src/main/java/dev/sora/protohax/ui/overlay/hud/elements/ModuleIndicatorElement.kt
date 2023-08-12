@@ -159,7 +159,7 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 		HUE("Hue") {
 			override fun getColor(index: Int, size: Int, r: Int, g: Int, b: Int): Int {
 				return dev.sora.protohax.util.Color.HSBtoRGB(
-					index.toFloat() / size / (System.currentTimeMillis() / 50),
+					index.toFloat() / ( size + (System.currentTimeMillis() ％ 20)),
 					1f,
 					1f
 				)
