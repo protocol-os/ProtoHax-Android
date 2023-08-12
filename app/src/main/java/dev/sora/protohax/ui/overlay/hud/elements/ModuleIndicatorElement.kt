@@ -16,13 +16,29 @@ import java.util.concurrent.atomic.AtomicBoolean
 
 class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_IDENTIFIER) {
 
-	private var sortingModeValue by listValue("SortingMode", SortingMode.values(), SortingMode.LENGTH_DESCENDING)
+	private var sortingModeValue by listValue(
+		"SortingMode",
+		SortingMode.values(),
+		SortingMode.LENGTH_DESCENDING
+	)
 	private var textRTLValue by boolValue("TextRTL", true)
 	private var colorModeValue by listValue("ColorMode", ColorMode.values(), ColorMode.HUE)
 	private var colorReversedSortValue by boolValue("ColorReversedSort", false)
-	private var colorRedValue by intValue("ColorRed", 255, 0..255).visible { colorModeValue != ColorMode.HUE }
-	private var colorGreenValue by intValue("ColorGreen", 255, 0..255).visible { colorModeValue != ColorMode.HUE }
-	private var colorBlueValue by intValue("ColorBlue", 255, 0..255).visible { colorModeValue != ColorMode.HUE }
+	private var colorRedValue by intValue(
+		"ColorRed",
+		255,
+		0..255
+	).visible { colorModeValue != ColorMode.HUE }
+	private var colorGreenValue by intValue(
+		"ColorGreen",
+		255,
+		0..255
+	).visible { colorModeValue != ColorMode.HUE }
+	private var colorBlueValue by intValue(
+		"ColorBlue",
+		255,
+		0..255
+	).visible { colorModeValue != ColorMode.HUE }
 	private var textSizeValue by intValue("TextSize", 15, 10..50).listen {
 		paint.textSize = it * MyApplication.density
 		it
@@ -41,7 +57,7 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 		private set
 
 	init {
-	    alignmentValue = HudAlignment.RIGHT_TOP
+		alignmentValue = HudAlignment.RIGHT_TOP
 		posX = 0
 		posY = 0
 	}
@@ -58,7 +74,8 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 				val alertNoModules = "No modules has toggled on currently"
 				width = paint.measureText(alertNoModules)
 
-				paint.color = colorModeValue.getColor(0, 1, colorRedValue, colorGreenValue, colorBlueValue)
+				paint.color =
+					colorModeValue.getColor(0, 1, colorRedValue, colorGreenValue, colorBlueValue)
 				canvas.drawText(alertNoModules, 0f, -paint.fontMetrics.ascent, paint)
 			}
 			return
@@ -68,8 +85,19 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 		val lineSpacing = (spacingValue * MyApplication.density)
 		val maxWidth = modules.maxOf { paint.measureText(it.name) }
 		modules.forEachIndexed { i, module ->
-			paint.color = colorModeValue.getColor(if (colorReversedSortValue) modules.size - i else i, modules.size, colorRedValue, colorGreenValue, colorBlueValue)
-			canvas.drawText(module.name, if (textRTLValue) maxWidth - paint.measureText(module.name) else 0f, -paint.fontMetrics.ascent + y, paint)
+			paint.color = colorModeValue.getColor(
+				if (colorReversedSortValue) modules.size - i else i,
+				modules.size,
+				colorRedValue,
+				colorGreenValue,
+				colorBlueValue
+			)
+			canvas.drawText(
+				module.name,
+				if (textRTLValue) maxWidth - paint.measureText(module.name) else 0f,
+				-paint.fontMetrics.ascent + y,
+				paint
+			)
 			y += lineHeight + lineSpacing
 		}
 		y -= lineHeight
@@ -130,7 +158,11 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 		},
 		HUE("Hue") {
 			override fun getColor(index: Int, size: Int, r: Int, g: Int, b: Int): Int {
-				return dev.sora.protohax.util.Color.HSBtoRGB(index.toFloat() / size, 1f, 1f)
+				return dev.sora.protohax.util.Color.HSBtoRGB(
+					index.toFloat() / size + (System.currentTimeMillis() / 50),
+					1f,
+					1f
+				)
 			}
 		},
 		SATURATION_SHIFT_ASCENDING("SaturationShift") {
