@@ -73,7 +73,7 @@ fun CheatCategoryTab(
 		item {
 			Spacer(modifier = Modifier.height(10.dp))
 		}
-		items(modules.keys.filter { it.category == category }.sortedBy { it.name }) { module ->
+		items(modules.keys.filter { it.category == category }.sortedBy { it.displayName }) { module ->
 			val expand = expandModules.contains(module)
 			Card(
 				colors = CardDefaults.cardColors(containerColor = animateColorAsState(targetValue = if (expand) MaterialTheme.colorScheme.primary else MaterialTheme.colorScheme.inversePrimary).value),
@@ -91,7 +91,7 @@ fun CheatCategoryTab(
 				Column(modifier = Modifier.padding(PaddingValues(13.dp, 3.dp, 13.dp, if (expand) 13.dp else 3.dp))) {
 					Box(modifier = Modifier.fillMaxWidth()) {
 						Text(
-							text = module.name,
+							text = module.displayName,
 							fontWeight = if (expand) FontWeight.Bold else null,
 							modifier = Modifier
 								.fillMaxWidth()
@@ -192,7 +192,7 @@ fun CheatValue(value: Value<*>, recomposeTrigger: () -> Unit) {
 				.fillMaxWidth()
 				.height(30.dp)
 		) {
-			Text(text = value.name, modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE))
+			Text(text = value.displayName, modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE))
 			Spacer(modifier = Modifier.weight(1f))
 			Checkbox(
 				checked = value.value,
@@ -205,7 +205,7 @@ fun CheatValue(value: Value<*>, recomposeTrigger: () -> Unit) {
 		}
 	} else if (value is IntValue || value is FloatValue) {
 		Row(modifier = Modifier.padding(0.dp, 5.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
-			Text(text = value.name, modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE))
+			Text(text = value.displayName, modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE))
 			Spacer(modifier = Modifier.weight(1f))
 			Text(text = if (value.value is Float) {
 				String.format("%.2f", value.value)
@@ -241,7 +241,7 @@ fun CheatValue(value: Value<*>, recomposeTrigger: () -> Unit) {
 		}
 	} else if (value is IntRangeValue) {
 		Row(modifier = Modifier.padding(0.dp, 5.dp, 0.dp, 0.dp), verticalAlignment = Alignment.CenterVertically) {
-			Text(text = value.name, modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE))
+			Text(text = value.displayName, modifier = Modifier.basicMarquee(iterations = Int.MAX_VALUE))
 			Spacer(modifier = Modifier.weight(1f))
 			Text(text = "${value.value.first}..${value.value.last}")
 		}
@@ -261,7 +261,7 @@ fun CheatValue(value: Value<*>, recomposeTrigger: () -> Unit) {
 		)
 	} else if (value is ListValue) {
 		Text(
-			text = value.name,
+			text = value.displayName,
 			modifier = Modifier
 				.padding(0.dp, 5.dp)
 				.basicMarquee(iterations = Int.MAX_VALUE)
@@ -297,7 +297,7 @@ fun CheatValue(value: Value<*>, recomposeTrigger: () -> Unit) {
 			}
 		}
 	} else if (value is StringValue) {
-		Text(text = value.name)
+		Text(text = value.displayName)
 		TextField(
 			value = value.value,
 			onValueChange = {

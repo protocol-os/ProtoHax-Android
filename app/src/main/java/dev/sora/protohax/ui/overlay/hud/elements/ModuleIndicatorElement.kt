@@ -83,7 +83,7 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 
 		var y = 0f
 		val lineSpacing = (spacingValue * MyApplication.density)
-		val maxWidth = modules.maxOf { paint.measureText(it.name) }
+		val maxWidth = modules.maxOf { paint.measureText(it.displayName) }
 		modules.forEachIndexed { i, module ->
 			paint.color = colorModeValue.getColor(
 				if (colorReversedSortValue) modules.size - i else i,
@@ -93,8 +93,8 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 				colorBlueValue
 			)
 			canvas.drawText(
-				module.name,
-				if (textRTLValue) maxWidth - paint.measureText(module.name) else 0f,
+				module.displayName,
+				if (textRTLValue) maxWidth - paint.measureText(module.displayName) else 0f,
 				-paint.fontMetrics.ascent + y,
 				paint
 			)
@@ -120,14 +120,14 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 			override fun getModules(paint: TextPaint): List<CheatModule> {
 				return MinecraftRelay.moduleManager.modules
 					.filter { it.state }
-					.sortedBy { it.name }
+					.sortedBy { it.displayName }
 			}
 		},
 		NAME_DESCENDING("NameDescending") {
 			override fun getModules(paint: TextPaint): List<CheatModule> {
 				return MinecraftRelay.moduleManager.modules
 					.filter { it.state }
-					.sortedBy { it.name }
+					.sortedBy { it.displayName }
 					.reversed()
 			}
 		},
@@ -135,14 +135,14 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 			override fun getModules(paint: TextPaint): List<CheatModule> {
 				return MinecraftRelay.moduleManager.modules
 					.filter { it.state }
-					.sortedBy { paint.measureText(it.name) }
+					.sortedBy { paint.measureText(it.displayName) }
 			}
 		},
 		LENGTH_DESCENDING("LengthDescending") {
 			override fun getModules(paint: TextPaint): List<CheatModule> {
 				return MinecraftRelay.moduleManager.modules
 					.filter { it.state }
-					.sortedBy { paint.measureText(it.name) }
+					.sortedBy { paint.measureText(it.displayName) }
 					.reversed()
 			}
 		};
