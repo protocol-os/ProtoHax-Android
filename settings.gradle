@@ -12,13 +12,6 @@ dependencyResolutionManagement {
         maven { url = 'https://repo.genshit.xyz/maven_repo/' }
         google()
         mavenCentral()
-        maven {
-            url = 'https://maven.pkg.github.com/SkidderMC/ProtoHax'
-            credentials {
-                username = System.getenv("USERNAME_GITHUB")
-                password = System.getenv("TOKEN_GITHUB")
-            }
-        }
     }
 }
 rootProject.name = 'ProtoHax-Android'
