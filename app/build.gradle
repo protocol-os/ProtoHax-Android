@@ -79,7 +79,7 @@ android {
 }
 
 dependencies {
-    implementation('dev.sora.relay:protohax:+') {
+    implementation('dev.sora.relay:protohax:1.4.0') {
         transitive = false
     }
     implementation 'dev.sora.networking:libmitm:1.2.3-raknet'
