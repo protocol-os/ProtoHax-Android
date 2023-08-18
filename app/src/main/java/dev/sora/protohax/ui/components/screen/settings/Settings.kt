@@ -15,7 +15,7 @@ object Settings {
 		if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) R.string.setting_trust_click_desc else R.string.setting_trust_click_disabled,
 		"TRUST_CLICK", false, override = Build.VERSION.SDK_INT < Build.VERSION_CODES.S, true)
 	val ipv6Status = TabSetting(R.string.setting_ip, "INTERNET_PROTOCOL", IPv6Choices.AUTOMATIC, IPv6Choices.values())
-	val languages = TabSetting(R.string.setting_languages, "en_us", LanguagesChoices.ENGLISH, LanguagesChoices.values())
+	val languages = TabSetting(R.string.setting_languages, "en_us", LanguagesChoices.ENGLISH, LanguagesChoices.values(), restartRequired = true)
 
 	val settings = arrayOf(offlineSessionEncryption, enableCommandManager, enableRakReliability, trustClicks, ipv6Status, languages)
 	enum class LanguagesChoices(override val displayName: Int, override val internalName: String) : TabChoice {
