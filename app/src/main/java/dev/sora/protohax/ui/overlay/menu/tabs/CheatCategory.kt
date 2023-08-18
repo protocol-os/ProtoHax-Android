@@ -63,7 +63,7 @@ import kotlin.math.roundToInt
 
 fun i18nNormalization(string: String): String {
 	return try {
-		if (string.contains("%module.")) string.replace("%module.", "").replace(".name%", "")
+		if (string.contains(".name%")) string.replace("%module.", "").replace(".name%", "")
 		else if (string.contains(".setting.")) string.split(".")[3].replace("%", "")
 		else string
 	} catch (e: Exception) {
