@@ -57,9 +57,13 @@
     <string name="setting_trust_click_disabled">All of clicks are trusted below Android 12</string>
     <string name="setting_logs">Logs</string>
     <string name="setting_logs_desc">Show Logs</string>
-
+    <string name="setting_languages">Languages</string>
     <string name="logcat_clear">Clear Logs</string>
     <string name="logcat_share">Share Logs</string>
+    <string name="setting_enus">English</string>
+    <string name="setting_zhcn">Chinese</string>
+    <string name="setting_jajp">Japanese</string>
+    <string name="setting_ruru">Russian</string>
 
     <string name="hud_delete_prompt">Are you sure to delete element %s?</string>
 

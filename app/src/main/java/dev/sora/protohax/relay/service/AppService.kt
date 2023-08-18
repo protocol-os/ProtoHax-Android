@@ -18,6 +18,8 @@ import dev.sora.protohax.relay.MinecraftRelay
 import dev.sora.protohax.ui.activities.MainActivity
 import dev.sora.protohax.ui.components.screen.settings.Settings
 import dev.sora.protohax.util.ContextUtils.getApplicationName
+import dev.sora.protohax.util.ContextUtils.toast
+import dev.sora.relay.cheat.module.i18n.LanguageManager
 import dev.sora.relay.utils.logError
 import dev.sora.relay.utils.logInfo
 import libmitm.Libmitm
@@ -74,6 +76,8 @@ class AppService : VpnService() {
     }
 
     private fun startVPN() {
+		LanguageManager.switchLanguage(Settings.languages.getValue(this).internalName)
+		toast("Language selected ${Settings.languages.getValue(this).displayName}")
         val (hasIPv4, hasIPv6) = when(Settings.ipv6Status.getValue(this)) {
 			Settings.IPv6Choices.AUTOMATIC -> checkNetState()
 			Settings.IPv6Choices.ENABLED -> true to true

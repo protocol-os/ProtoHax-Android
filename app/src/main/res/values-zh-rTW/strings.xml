@@ -54,6 +54,7 @@
     <string name="setting_trust_click_disabled">Android 12 以下的所有點擊均被信任</string>
     <string name="setting_logs">日誌</string>
     <string name="setting_logs_desc">顯示日誌</string>
+    <string name="setting_languages">語言</string>
 
     <string name="logcat_clear">清除日誌</string>
     <string name="logcat_share">共享日誌</string>

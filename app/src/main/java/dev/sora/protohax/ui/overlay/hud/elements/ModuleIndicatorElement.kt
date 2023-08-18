@@ -9,6 +9,7 @@ import dev.sora.protohax.ui.overlay.RenderLayerView
 import dev.sora.protohax.ui.overlay.hud.HudAlignment
 import dev.sora.protohax.ui.overlay.hud.HudElement
 import dev.sora.protohax.ui.overlay.hud.HudManager
+import dev.sora.protohax.ui.overlay.menu.tabs.i18nNormalization
 import dev.sora.relay.cheat.module.CheatModule
 import dev.sora.relay.cheat.module.EventModuleToggle
 import dev.sora.relay.cheat.value.NamedChoice
@@ -83,7 +84,7 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 
 		var y = 0f
 		val lineSpacing = (spacingValue * MyApplication.density)
-		val maxWidth = modules.maxOf { paint.measureText(it.displayName) }
+		val maxWidth = modules.maxOf { paint.measureText(i18nNormalization(it.displayName)) }
 		modules.forEachIndexed { i, module ->
 			paint.color = colorModeValue.getColor(
 				if (colorReversedSortValue) modules.size - i else i,
@@ -93,8 +94,8 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 				colorBlueValue
 			)
 			canvas.drawText(
-				module.displayName,
-				if (textRTLValue) maxWidth - paint.measureText(module.displayName) else 0f,
+				i18nNormalization(module.displayName),
+				if (textRTLValue) maxWidth - paint.measureText(i18nNormalization(module.displayName)) else 0f,
 				-paint.fontMetrics.ascent + y,
 				paint
 			)
@@ -120,14 +121,14 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 			override fun getModules(paint: TextPaint): List<CheatModule> {
 				return MinecraftRelay.moduleManager.modules
 					.filter { it.state }
-					.sortedBy { it.displayName }
+					.sortedBy { i18nNormalization(it.displayName) }
 			}
 		},
 		NAME_DESCENDING("NameDescending") {
 			override fun getModules(paint: TextPaint): List<CheatModule> {
 				return MinecraftRelay.moduleManager.modules
 					.filter { it.state }
-					.sortedBy { it.displayName }
+					.sortedBy { i18nNormalization(it.displayName) }
 					.reversed()
 			}
 		},
@@ -135,14 +136,14 @@ class ModuleIndicatorElement : HudElement(HudManager.MODULE_INDICATOR_ELEMENT_ID
 			override fun getModules(paint: TextPaint): List<CheatModule> {
 				return MinecraftRelay.moduleManager.modules
 					.filter { it.state }
-					.sortedBy { paint.measureText(it.displayName) }
+					.sortedBy { paint.measureText(i18nNormalization(it.displayName)) }
 			}
 		},
 		LENGTH_DESCENDING("LengthDescending") {
 			override fun getModules(paint: TextPaint): List<CheatModule> {
 				return MinecraftRelay.moduleManager.modules
 					.filter { it.state }
-					.sortedBy { paint.measureText(it.displayName) }
+					.sortedBy { paint.measureText(i18nNormalization(it.displayName)) }
 					.reversed()
 			}
 		};
