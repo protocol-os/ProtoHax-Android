@@ -9,6 +9,7 @@ import androidx.core.graphics.withTranslation
 import dev.sora.protohax.MyApplication
 import dev.sora.protohax.ui.overlay.RenderLayerView
 import dev.sora.protohax.util.ContextUtils.getColor
+import dev.sora.relay.cheat.module.CheatModule
 import dev.sora.relay.cheat.value.Configurable
 import dev.sora.relay.cheat.value.Value
 import dev.sora.relay.game.event.EventHook

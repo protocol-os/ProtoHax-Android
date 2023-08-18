@@ -10,6 +10,7 @@ import dev.sora.protohax.ui.overlay.hud.HudAlignment
 import dev.sora.protohax.ui.overlay.hud.HudElement
 import dev.sora.protohax.ui.overlay.hud.HudManager
 import dev.sora.protohax.ui.overlay.menu.tabs.i18nNormalization
+import dev.sora.relay.cheat.module.CheatCategory
 import dev.sora.relay.cheat.module.CheatModule
 import dev.sora.relay.cheat.module.EventModuleToggle
 import dev.sora.relay.cheat.value.NamedChoice

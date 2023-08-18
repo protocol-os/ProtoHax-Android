@@ -23,6 +23,9 @@ class HudManager(private val session: GameSession) : IConfigSection {
 	fun addElement(element: HudElement) {
 		elements.add(element)
 		element.register(session.eventManager)
+		element.values.forEach {
+			it.cheatModule = HudElementModule
+		}
 		session.eventManager.emit(RenderLayerView.EventRefreshRender(session))
 	}
 
