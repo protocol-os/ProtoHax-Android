@@ -1,29 +1,32 @@
-name: Android CI
+name: Build and Upload APK
 
 on:
-  push
+  push:
+    branches: [ forward-only ]
+  pull_request:
+    branches: [ forward-only ]
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    env:
-      USERNAME_GITHUB: ${{ secrets.GITHUB_USERNAME }}
-      TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
-    steps:
-    - uses: actions/checkout@v3
-    - name: set up JDK 11
-      uses: actions/setup-java@v3
-      with:
-        java-version: '17'
-        distribution: 'temurin'
-        cache: gradle
 
-    - name: Grant execute permission for gradlew
-      run: chmod +x gradlew
-    - name: Build with Gradle
-      run: ./gradlew app:assembleRelease
-    - name: Upload build artifacts
-      uses: actions/upload-artifact@v2
-      with:
-        name: ProtoHax-build-${{ github.sha }}
-        path: ./app/build/outputs/apk/release/app-release.apk
+    steps:
+      - uses: actions/checkout@v2
+
+      - name: Set up JDK 11
+        uses: actions/setup-java@v2
+        with:
+          java-version: '11'
+          distribution: 'adopt'
+
+      - name: Grant execute permission for gradlew
+        run: chmod +x gradlew
+
+      - name: Build APK
+        run: ./gradlew assembleDebug
+
+      - name: Upload APK as artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: app-debug-apk
+          path: app/build/outputs/apk/debug/app-debug.apk
