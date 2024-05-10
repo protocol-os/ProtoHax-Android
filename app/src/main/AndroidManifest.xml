@@ -3,7 +3,7 @@
     xmlns:tools="http://schemas.android.com/tools">
 
     <uses-permission android:name="android.permission.INTERNET" />
-    <uses-permission android:name="android.permission.FOREGROUND_SERVICE"/>
+    <uses-permission android:name="android.permission.FOREGROUND_SERVICE" />
     <uses-permission android:name="android.permission.QUERY_ALL_PACKAGES"
         tools:ignore="QueryAllPackagesPermission" />
 
@@ -18,6 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProtoHax"
         tools:targetApi="33">
+
         <activity
             android:name="dev.sora.protohax.MainActivity"
             android:exported="true"
@@ -28,10 +29,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
             android:name="dev.sora.protohax.activity.LogcatActivity"
             android:exported="false"
             android:theme="@style/Theme.ProtoHax">
+        </activity>
+
+        <activity
+            android:name="dev.sora.protohax.CreditsActivity"
+            android:parentActivityName=".MainActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="dev.sora.protohax.MainActivity" />
         </activity>
 
         <service android:name="dev.sora.protohax.AppService"
@@ -39,14 +49,15 @@
             android:exported="false">
             <intent-filter>
                 <action android:name="android.net.VpnService" />
-                <action android:name="dev.sora.libmitm1.vpn.start"/>
-                <action android:name="dev.sora.libmitm1.vpn.stop"/>
+                <action android:name="dev.sora.libmitm1.vpn.start" />
+                <action android:name="dev.sora.libmitm1.vpn.stop" />
             </intent-filter>
         </service>
 
         <meta-data
             android:name="com.google.firebase.messaging.default_notification_icon"
             android:resource="@drawable/notification_icon" />
+
     </application>
 
 </manifest>
