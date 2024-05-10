@@ -2,6 +2,9 @@ package dev.sora.protohax.forwarder.app;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
+import android.os.Bundle;
+import android.view.View;
+import android.widget.TextView;
 
 public class CreditsActivity extends AppCompatActivity {
 
@@ -14,5 +17,9 @@ public class CreditsActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.creditsToolbar);
         setSupportActionBar(toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        // Set the title and text content
+        TextView creditsTextView = findViewById(R.id.creditsTextView);
+        creditsTextView.setText("Made by Strike");
     }
 }
