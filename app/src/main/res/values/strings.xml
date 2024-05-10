@@ -16,4 +16,6 @@
     <string name="logcat_clear">Clear Logs</string>
     <string name="logcat_copy">Copy Logs</string>
     <string name="logcat_copied">Logs has beed copied to clipboard</string>
+    <string name="credits_title">Credits</string>
+    <string name="credits">Credits</string>
 </resources>
