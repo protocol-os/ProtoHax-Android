@@ -1,5 +1,6 @@
-package dev.sora.protohax.forwarder.app;
+package dev.sora.protohax
 
+import android.app.*
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import android.os.Bundle;
