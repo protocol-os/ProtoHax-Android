@@ -117,7 +117,7 @@
             android:layout_gravity="center"
             android:padding="10dp"
             android:text="@string/not_connected"
-            android:textColor="#FFFFFF" />
+            android:textColor="#9d3ee6" />
 
     </com.google.android.material.bottomappbar.BottomAppBar>
 
@@ -128,7 +128,6 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="30dp"
         android:layout_marginBottom="30dp"
-        android:backgroundTint="#00FF00"
         android:contentDescription="@string/connect_to_proxy"
         app:srcCompat="@drawable/notification_icon"
         app:tint="@android:color/white" />
