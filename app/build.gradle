@@ -6,7 +6,7 @@ plugins {
 android {
     signingConfigs {
         debug {
-            storeFile file('/home/liuli/data/.key/sora.jks')
+            storeFile rootProject.file("signing.jks")
             keyAlias 'sora'
             keyPassword '1145141919'
             storePassword '1145141919'
