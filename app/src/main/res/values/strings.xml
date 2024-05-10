@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name" translatable="false">ProtoHax (Forward Only)</string>
+    <string name="app_name" translatable="false">ProtoStrike (Real)</string>
     <string name="connect_to_proxy">Connect to MITM proxy</string>
     <string name="connected">Connected, click here to launch app</string>
     <string name="not_connected">Not connected</string>
