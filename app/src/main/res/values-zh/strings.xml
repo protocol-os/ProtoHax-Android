@@ -14,4 +14,6 @@
     <string name="logcat_copied">紀錄檔已經被複製到剪貼板</string>
     <string name="target_app_not_exists">欲啓動的應用程式 %s 未找到</string>
     <string name="select_apps">選擇一個應用程式</string>
+    <string name="credits_title">Credits</string>
+    <string name="credits">Credits</string>
 </resources>
