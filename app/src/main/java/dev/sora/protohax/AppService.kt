@@ -14,6 +14,7 @@ import kotlin.random.Random
 class AppService : NetBareService() {
 
     private lateinit var windowManager: WindowManager
+    private val CHANNEL_ID = "dev.sora.protohax.NOTIFICATION_CHANNEL_ID"
 
     override fun onCreate() {
         val notificationManager = getSystemService(Service.NOTIFICATION_SERVICE) as NotificationManager
@@ -61,6 +62,4 @@ class AppService : NetBareService() {
 
         return builder.build()
     }
-
-    const val CHANNEL_ID = "dev.sora.protohax.NOTIFICATION_CHANNEL_ID"
 }
