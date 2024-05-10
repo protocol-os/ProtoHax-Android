@@ -15,41 +15,37 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="#333333"
-            app:titleTextColor="#FFFFFF"
-            app:title="@string/app_name"/>
+            app:title="@string/app_name"
+            app:titleTextColor="#FFFFFF" />
 
     </com.google.android.material.appbar.AppBarLayout>
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_height="match_parent"
         app:layout_behavior="@string/appbar_scrolling_view_behavior">
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical">
+            android:orientation="vertical"
+            android:padding="20dp">
 
             <com.google.android.material.textfield.TextInputLayout
                 android:id="@+id/name_text_input"
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="20dp"
-                android:layout_marginTop="20dp"
-                android:backgroundTint="#444444">
+                android:background="#444444">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/name_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginVertical="5dp"
-                    android:backgroundTint="#444444"
                     android:hint="@string/package_name"
                     android:maxLines="1"
-                    android:padding="10dp"
                     android:textColor="#FFFFFF"
                     android:textColorHint="#AAAAAA"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -60,20 +56,16 @@
                 style="@style/Widget.MaterialComponents.TextInputLayout.OutlinedBox"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="20dp"
-                android:backgroundTint="#444444">
+                android:background="#444444">
 
                 <com.google.android.material.textfield.TextInputEditText
                     android:id="@+id/forward_edit_text"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="10dp"
-                    android:layout_marginVertical="5dp"
-                    android:backgroundTint="#444444"
                     android:hint="@string/target_forward"
                     android:maxLines="1"
-                    android:padding="10dp"
                     android:textColor="#FFFFFF"
                     android:textColorHint="#AAAAAA"
                     tools:ignore="TouchTargetSizeCheck" />
@@ -82,21 +74,29 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="20dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginHorizontal="20dp"
-                android:backgroundTint="#444444">
+                android:orientation="horizontal">
 
                 <Button
                     android:id="@+id/button_show_logs"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginHorizontal="5dp"
-                    android:layout_marginVertical="10dp"
-                    android:backgroundTint="#FF4444"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginRight="10dp"
+                    android:background="#555555"
                     android:text="@string/show_logs"
-                    android:textColor="#FFFFFF"
-                    style="?android:attr/buttonBarButtonStyle" />
+                    android:textColor="#FFFFFF" />
 
+                <Button
+                    android:id="@+id/button_credits"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:background="#555555"
+                    android:text="@string/credits"
+                    android:textColor="#FFFFFF" />
             </LinearLayout>
 
         </LinearLayout>
@@ -107,8 +107,9 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
-        android:background="#333333"
-        style="@style/Widget.MaterialComponents.BottomAppBar">
+        app:backgroundTint="#333333"
+        app:fabAlignmentMode="outside"
+        app:layout_anchor="@+id/floating_button">
 
         <TextView
             android:id="@+id/bottomAppBarText"
@@ -126,11 +127,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_gravity="bottom|end"
-        android:layout_marginEnd="30dp"
-        android:layout_marginBottom="30dp"
-        android:backgroundTint="#00FF00"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="16dp"
         android:contentDescription="@string/connect_to_proxy"
-        app:srcCompat="@drawable/notification_icon"
-        app:tint="@android:color/white" />
+        app:backgroundTint="#FF4081"
+        app:fabSize="mini"
+        app:srcCompat="@drawable/notification_icon" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
