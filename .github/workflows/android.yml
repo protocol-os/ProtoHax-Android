@@ -11,7 +11,7 @@ jobs:
       TOKEN_GITHUB: ${{ secrets.GITHUB_TOKEN }}
     steps:
     - uses: actions/checkout@v3
-    - name: set up JDK 11
+    - name: Set up JDK 11
       uses: actions/setup-java@v3
       with:
         java-version: '17'
@@ -22,8 +22,14 @@ jobs:
       run: chmod +x gradlew
     - name: Build with Gradle
       run: ./gradlew app:assembleRelease
+
+    # Zip the build folder
+    - name: Zip build folder
+      run: zip -r build.zip ./app/build
+
+    # Upload build artifacts
     - name: Upload build artifacts
       uses: actions/upload-artifact@v2
       with:
         name: ProtoHax-build-${{ github.sha }}
-        path: ./app/build/outputs/apk/release/app-release.apk
+        path: build.zip
