@@ -108,7 +108,7 @@
         android:layout_height="wrap_content"
         android:layout_gravity="bottom"
         app:backgroundTint="#333333"
-        app:fabAlignmentMode="outside"
+        app:fabAlignmentMode="end"
         app:layout_anchor="@+id/floating_button">
 
         <TextView
