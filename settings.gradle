@@ -11,7 +11,7 @@ dependencyResolutionManagement {
         mavenLocal()
         google()
         mavenCentral()
-        maven { url = 'https://mccheatz.github.io/maven_repo/' }
+        maven { url = 'https://raw.githubusercontent.com/SkidderMC/ProtoHax-PackageGit/main/maven_repo/' }
     }
 }
 rootProject.name = 'ProtoHax-Android'
