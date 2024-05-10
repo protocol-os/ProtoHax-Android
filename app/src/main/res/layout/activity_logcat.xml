@@ -4,30 +4,28 @@
     android:id="@+id/drawer_layout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true">
+    android:fitsSystemWindows="true"
+    android:background="#222222">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:padding="10dp">
+        android:layout_height="match_parent">
 
         <ProgressBar
             android:id="@+id/pb_waiting"
-            style="@android:style/Widget.DeviceDefault.ProgressBar"
-            android:layout_width="match_parent"
+            style="@android:style/Widget.DeviceDefault.ProgressBar.Inverse"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerHorizontal="true"
-            android:layout_centerVertical="true" />
+            android:layout_centerInParent="true" />
 
         <ScrollView
             android:id="@+id/sv_logcat"
-            android:layout_width="402dp"
-            android:layout_height="672dp"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
             android:layout_alignParentStart="true"
             android:layout_alignParentTop="true"
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
-            android:layout_marginStart="0dp"
             android:layout_marginTop="50dp"
             android:fillViewport="false"
             android:foregroundGravity="bottom">
@@ -36,12 +34,15 @@
                 android:id="@+id/tv_logcat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:gravity="bottom"
+                android:layout_margin="10dp"
+                android:background="#444444"
+                android:gravity="top"
                 android:maxLines="65536"
-                android:textAppearance="?android:attr/textAppearanceSmall" />
+                android:padding="10dp"
+                android:textAppearance="?android:attr/textAppearanceSmall"
+                android:textColor="#FFFFFF" />
         </ScrollView>
     </RelativeLayout>
-
 
     <LinearLayout
         android:layout_width="match_parent"
@@ -50,12 +51,14 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:background="#333333">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
+                android:background="#333333"
                 app:titleTextColor="#FFFFFF"
                 app:menu="@menu/menu_logcat"
                 app:title="@string/logcat_title"/>
