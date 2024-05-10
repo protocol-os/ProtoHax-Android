@@ -9,14 +9,16 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:padding="10dp">
 
         <ProgressBar
             android:id="@+id/pb_waiting"
-            style="@android:style/Widget.DeviceDefault.ProgressBar.Inverse"
+            style="?android:attr/progressBarStyleLarge"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_centerInParent="true" />
+            android:layout_centerInParent="true"
+            android:indeterminateTint="#FFFFFF" />
 
         <ScrollView
             android:id="@+id/sv_logcat"
@@ -27,20 +29,20 @@
             android:layout_alignParentEnd="true"
             android:layout_alignParentBottom="true"
             android:layout_marginTop="50dp"
-            android:fillViewport="false"
+            android:fillViewport="true"
             android:foregroundGravity="bottom">
 
             <TextView
                 android:id="@+id/tv_logcat"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_margin="10dp"
-                android:background="#444444"
+                android:background="#333333"
                 android:gravity="top"
                 android:maxLines="65536"
                 android:padding="10dp"
-                android:textAppearance="?android:attr/textAppearanceSmall"
-                android:textColor="#FFFFFF" />
+                android:scrollbars="vertical"
+                android:textColor="#FFFFFF"
+                android:textAppearance="?android:attr/textAppearanceSmall" />
         </ScrollView>
     </RelativeLayout>
 
@@ -51,17 +53,16 @@
 
         <com.google.android.material.appbar.AppBarLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#333333">
+            android:layout_height="wrap_content">
 
             <com.google.android.material.appbar.MaterialToolbar
                 android:id="@+id/topAppBar"
                 android:layout_width="match_parent"
                 android:layout_height="?attr/actionBarSize"
-                android:background="#333333"
-                app:titleTextColor="#FFFFFF"
+                android:background="#444444"
                 app:menu="@menu/menu_logcat"
-                app:title="@string/logcat_title"/>
+                app:title="@string/logcat_title"
+                app:titleTextColor="#FFFFFF" />
 
         </com.google.android.material.appbar.AppBarLayout>
     </LinearLayout>
