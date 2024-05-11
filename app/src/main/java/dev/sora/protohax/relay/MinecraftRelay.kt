@@ -12,7 +12,7 @@ import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
-object PacketRelay {
+object MinecraftRelay {
 
     private var firstStart = true
     private var relay: UdpProxyServerForwarder? = null
