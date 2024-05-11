@@ -4,15 +4,15 @@ import android.util.Log
 import com.github.megatronking.netbare.NetBareUtils
 import com.github.megatronking.netbare.proxy.UdpProxyServerForwarder
 import io.netty.util.internal.logging.InternalLoggerFactory
+import io.netty.util.internal.logging.Slf4JLoggerFactory
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetSocketAddress
 import java.nio.ByteBuffer
-import java.util.concurrent.locks.ReentrantLock
 import kotlin.concurrent.thread
 import kotlin.random.Random
 
-object MinecraftRelay {
+object PacketRelay {
 
     private var firstStart = true
     private var relay: UdpProxyServerForwarder? = null
@@ -35,7 +35,7 @@ object MinecraftRelay {
         }.join()
 
         UdpProxyServerForwarder.targetForwardPort = (port + -Short.MIN_VALUE).toShort()
-        val relay = UdpProxyServerForwarder(InetSocketAddress("0.0.0.0", port))
+        val relay = UdpProxyServerForwarder(InetSocketAddress("0.0.0.0", port.toInt()))
         relay.listener = object : UdpProxyServerForwarder.Listener {
             override fun onQuery(address: InetSocketAddress): ByteArray {
                 return "Query Response".toByteArray()
@@ -71,7 +71,6 @@ object MinecraftRelay {
             doFirstStartPrepare()
             return
         }
-        this.relay = relay
     }
 
     private fun doFirstStartPrepare() {
