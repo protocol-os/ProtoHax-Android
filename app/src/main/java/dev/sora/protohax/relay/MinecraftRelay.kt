@@ -18,7 +18,7 @@ object MinecraftRelay {
     private var relay: UdpProxyServerForwarder? = null
 
     fun listen() {
-        InternalLoggerFactory.setDefaultFactory(Slf4JLoggerFactory())
+        InternalLoggerFactory.setDefaultFactory(InternalLoggerFactory())
 
         UdpProxyServerForwarder.targetForwardPort++
         val port = NetBareUtils.convertPort(UdpProxyServerForwarder.targetForwardPort)
