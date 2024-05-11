@@ -4,6 +4,7 @@ import android.util.Log
 import com.github.megatronking.netbare.NetBareUtils
 import com.github.megatronking.netbare.proxy.UdpProxyServerForwarder
 import io.netty.util.internal.logging.InternalLoggerFactory
+import io.netty.util.internal.logging.Slf4JLoggerFactory
 import java.net.DatagramPacket
 import java.net.DatagramSocket
 import java.net.InetSocketAddress
@@ -17,7 +18,7 @@ object MinecraftRelay {
     private var relay: UdpProxyServerForwarder? = null
 
     fun listen() {
-        InternalLoggerFactory.setDefaultFactory(InternalLoggerFactory())
+        InternalLoggerFactory.setDefaultFactory(Slf4JLoggerFactory())
 
         UdpProxyServerForwarder.targetForwardPort++
         val port = NetBareUtils.convertPort(UdpProxyServerForwarder.targetForwardPort)
