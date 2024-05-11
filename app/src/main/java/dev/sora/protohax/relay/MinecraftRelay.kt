@@ -1,3 +1,5 @@
+package dev.sora.protohax.relay
+
 import android.util.Log
 import com.github.megatronking.netbare.NetBareUtils
 import com.github.megatronking.netbare.proxy.UdpProxyServerForwarder
