@@ -1,7 +1,6 @@
 package dev.sora.protohax.relay
 
 import android.util.Log
-import com.github.megatronking.netbare.NetBare
 import com.github.megatronking.netbare.NetBareUtils
 import com.github.megatronking.netbare.proxy.UdpProxyServerForwarder
 import io.netty.util.internal.logging.InternalLoggerFactory
@@ -18,11 +17,6 @@ object MinecraftRelay {
 
     fun listen() {
         InternalLoggerFactory.setDefaultFactory(NettyLoggerFactory())
-
-        // Start NetBare if it's not already running
-        if (!NetBare.isRunning) {
-            NetBare.start()
-        }
 
         UdpProxyServerForwarder.targetForwardPort++
         val port = NetBareUtils.convertPort(UdpProxyServerForwarder.targetForwardPort)
@@ -85,11 +79,6 @@ object MinecraftRelay {
     }
 
     fun close() {
-        // Stop NetBare if it's not already stopped
-        if (NetBare.isRunning) {
-            NetBare.stop()
-        }
-
         relay?.close(true)
         relay = null
     }
@@ -131,5 +120,3 @@ interface RelaySessionListener {
 
 // Define your own packet class
 class Packet(var data: String)
-
-// No custom logger required
