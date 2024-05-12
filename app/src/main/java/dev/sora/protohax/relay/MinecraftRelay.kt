@@ -1,97 +1,97 @@
-package dev.sora.protohax.relay;
+package dev.sora.protohax.relay
 
-import android.util.Log;
-import com.github.megatronking.netbare.NetBare;
-import com.github.megatronking.netbare.NetBareUtils;
-import com.github.megatronking.netbare.proxy.UdpProxyServerForwarder;
-import io.netty.util.internal.logging.InternalLoggerFactory;
-import java.net.DatagramPacket;
-import java.net.DatagramSocket;
-import java.net.InetSocketAddress;
-import java.nio.ByteBuffer;
-import java.util.concurrent.locks.ReentrantLock;
+import android.util.Log
+import com.github.megatronking.netbare.NetBare
+import com.github.megatronking.netbare.NetBareUtils
+import com.github.megatronking.netbare.proxy.UdpProxyServerForwarder
+import io.netty.util.internal.logging.InternalLoggerFactory
+import java.net.DatagramPacket
+import java.net.DatagramSocket
+import java.net.InetSocketAddress
+import java.nio.ByteBuffer
+import java.util.concurrent.locks.ReentrantLock
 
 object MinecraftRelay {
 
-    private var firstStart = true;
-    private var relay: RelayServer? = null;
+    private var firstStart = true
+    private var relay: RelayServer? = null
 
     fun listen() {
-        InternalLoggerFactory.setDefaultFactory(NettyLoggerFactory());
+        InternalLoggerFactory.setDefaultFactory(NettyLoggerFactory())
 
         // Start NetBare if it's not already running
-        if (!NetBare.isRunning()) {
-            NetBare.start();
+        if (!NetBare.isRunning) {
+            NetBare.start()
         }
 
-        UdpProxyServerForwarder.targetForwardPort++;
-        val port = NetBareUtils.convertPort(UdpProxyServerForwarder.targetForwardPort);
+        UdpProxyServerForwarder.targetForwardPort++
+        val port = NetBareUtils.convertPort(UdpProxyServerForwarder.targetForwardPort)
 
-        relay = RelayServer(InetSocketAddress("0.0.0.0", port));
+        relay = RelayServer(InetSocketAddress("0.0.0.0", port))
         relay?.listener = object : RelayListener {
             override fun onQuery(address: InetSocketAddress): ByteArray {
-                Log.i("MinecraftRelay", "QUERY");
-                return "Example Protocol;Example Relay;Example Version;Example Info;Example Port;$port".toByteArray();
+                Log.i("MinecraftRelay", "QUERY")
+                return "Example Protocol;Example Relay;Example Version;Example Info;Example Port;$port".toByteArray()
             }
 
             override fun onSessionCreation(session: ServerSession): InetSocketAddress {
-                val originalAddr = UdpProxyServerForwarder.lastForwardAddr;
-                val targetAddress = InetSocketAddress(NetBareUtils.convertIp(originalAddr.getAddress()), originalAddr.getPort());
-                Log.i("MinecraftRelay", "SessionCreation: $targetAddress");
-                return targetAddress;
+                val originalAddr = UdpProxyServerForwarder.lastForwardAddr
+                val targetAddress = InetSocketAddress(NetBareUtils.convertIp(originalAddr.address), originalAddr.port)
+                Log.i("MinecraftRelay", "SessionCreation: $targetAddress")
+                return targetAddress
             }
 
             override fun onPrepareClientConnection(address: InetSocketAddress) {
-                Log.i("MinecraftRelay", "PrepareClientConnection $address");
-                UdpProxyServerForwarder.addWhitelist(NetBareUtils.convertIp("10.1.10.1"), address.getPort().toShort());
+                Log.i("MinecraftRelay", "PrepareClientConnection $address")
+                UdpProxyServerForwarder.addWhitelist(NetBareUtils.convertIp("10.1.10.1"), address.port.toShort())
             }
 
             override fun onSession(session: RelaySession) {
                 session.listener = object : RelaySessionListener(session) {
                     override fun onPacketInbound(packet: Packet): Boolean {
-                        if ("Hello Test".equals(packet.toString())) {
+                        if ("Hello Test" == packet.data) {
                             // Modify the packet data
-                            packet.toStringMutable().replace("Hello Test", "Hello World");
-                            return false;
+                            packet.data = "Hello World"
+                            return false
                         }
-                        return super.onPacketInbound(packet);
+                        return super.onPacketInbound(packet)
                     }
 
                     override fun onPacketOutbound(packet: Packet): Boolean {
-                        if ("Give Fly Permission".equals(packet.toString())) {
+                        if ("Give Fly Permission" == packet.data) {
                             // Simulate granting fly permission
-                            return false;
+                            return false
                         }
-                        return super.onPacketOutbound(packet);
+                        return super.onPacketOutbound(packet)
                     }
-                };
+                }
             }
-        };
+        }
 
-        relay?.bind();
+        relay?.bind()
 
         if (firstStart) {
-            firstStart = false;
-            doFirstStartPrepare();
-            return;
+            firstStart = false
+            doFirstStartPrepare()
+            return
         }
     }
 
     private fun doFirstStartPrepare() {
         // Simulate first start preparation
-        Thread.sleep(60L);
-        close();
-        listen();
+        Thread.sleep(60L)
+        close()
+        listen()
     }
 
     fun close() {
         // Stop NetBare if it's not already stopped
-        if (NetBare.isRunning()) {
-            NetBare.stop();
+        if (NetBare.isRunning) {
+            NetBare.stop()
         }
 
-        relay?.close(true);
-        relay = null;
+        relay?.close(true)
+        relay = null
     }
 }
 
@@ -101,12 +101,12 @@ class RelayServer(address: InetSocketAddress) {
 
     fun bind() {
         // Simulate binding the relay
-        Log.i("MinecraftRelay", "Relay bound to $address");
+        Log.i("MinecraftRelay", "Relay bound to $address")
     }
 
     fun close(force: Boolean) {
         // Simulate closing the relay
-        Log.i("MinecraftRelay", "Relay closed");
+        Log.i("MinecraftRelay", "Relay closed")
     }
 }
 
@@ -130,54 +130,6 @@ interface RelaySessionListener {
 }
 
 // Define your own packet class
-class Packet {
-    var data: String? = null
+class Packet(var data: String)
 
-    fun toString(): String {
-        return data ?: ""
-    }
-
-    fun toStringMutable(): String {
-        return data ?: ""
-    }
-}
-
-// Define your own logger factory
-class NettyLoggerFactory : InternalLoggerFactory() {
-    override fun newInstance(name: String) = ExampleLogger(name)
-}
-
-// Define your own logger class
-class ExampleLogger(name: String) : InternalLogger(name) {
-    override fun isInfoEnabled(): Boolean {
-        return true;
-    }
-
-    override fun isDebugEnabled(): Boolean {
-        return true;
-    }
-
-    override fun isWarnEnabled(): Boolean {
-        return true;
-    }
-
-    override fun isErrorEnabled(): Boolean {
-        return true;
-    }
-
-    override fun info(msg: String) {
-        Log.i("MinecraftRelay", msg);
-    }
-
-    override fun debug(msg: String) {
-        Log.d("MinecraftRelay", msg);
-    }
-
-    override fun warn(msg: String) {
-        Log.w("MinecraftRelay", msg);
-    }
-
-    override fun error(msg: String) {
-        Log.e("MinecraftRelay", msg);
-    }
-}
+// No custom logger required
