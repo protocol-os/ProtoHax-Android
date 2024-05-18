@@ -17,7 +17,7 @@ android {
 
     defaultConfig {
         applicationId "dev.sora.protohax.forwarder"
-        minSdk 28
+        minSdk 22 // Changed from 28 to 22 for Android 5.1 support
         targetSdk 33
         versionCode 1
         versionName "1.0.0"
